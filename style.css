@@ -3,6 +3,12 @@
 
 body {
     background-color: #080808;
+    user-select: none;
+    user-drag: none;
+    -webkit-user-drag: none;
+    -khtml-user-drag: none;
+    -moz-user-drag: none;
+    -o-user-drag: none;
 }
 
 .intro {

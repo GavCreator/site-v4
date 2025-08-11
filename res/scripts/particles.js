@@ -33,7 +33,7 @@ const configs = {
       "maxSpeed": 50,
       "mode": "bounce",
       "overlap": {
-        "enable": true,
+        "enable": false,
         "retries": 0
       }
     },
