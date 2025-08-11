@@ -136,7 +136,7 @@ const configs = {
       "straight": false,
       "trail": {
         "enable": true,
-        "length": 30,
+        "length": 15,
         "fill": {
           "color": {
             "value": "#000"
