@@ -13,6 +13,8 @@ body {
     width: 50%;
     padding: 1%;
     margin: 1% auto;
+    background-color: #000000;
+    border-radius: 16px;
 }
 
 .intro .text {
@@ -46,5 +48,5 @@ body {
 }
 
 #tsparticles {
-    z-index: -1;
+    z-index: -1111;
 }

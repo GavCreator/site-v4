@@ -1,47 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="style.css">
-    
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-    <div class="intro">
-        <div class="text">
-            <div class="header">
-                <p>Hey, Its Gav!</p>
-            </div>
-            <div class="desc">
-                <p>I'm known as GvNx or SimplyGav.</p>
-                <p>As a content creator on YouTube, Twitch, and Patreon!</p>
-            </div>
-        </div>
-        <div class="icon">
-            <img src="res/icon.png">
-        </div>
+  <div class="intro">
+    <div class="text">
+      <div class="header">
+        <p>Hey, Its Gav!</p>
+      </div>
+      <div class="desc">
+        <p>I'm known as GvNx or SimplyGav</p>
+        <p>As a content creator on YouTube, Twitch, and Patreon!</p>
+      </div>
     </div>
-    
-    <div id="tsparticles"></div>
-    <script src="res/tsparticles/tsparticles.bundle.min.js"></script>
-      <script>
-    tsParticles.load("tsparticles", {
-      autoPlay: true,
-      background: {
-        color: { value: "#000" },
-      },
-      fullScreen: { enable: true, zIndex: -1 },
-      fpsLimit: 120,
-      particles: {
-        number: { value: 50, density: { enable: true, area: 800 } },
-        color: { value: "#FF0000" },
-        shape: { type: "circle" },
-        size: { value: 2 },
-        move: { enable: true, speed: 3 },
-      },
-      interactivity: { detectsOn: "window", events: { onHover: { enable: false } } },
-    });
-  </script>
+    <div class="icon">
+      <img src="res/icon.png">
+    </div>
+  </div>
+
+  <div id="tsparticles"></div>
+  <script type="module" src="particles.js"></script>
+
 </body>
+
 </html>
