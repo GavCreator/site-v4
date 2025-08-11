@@ -44,3 +44,7 @@ body {
     width: 256px;
     height: auto;
 }
+
+#tsparticles {
+    z-index: -1;
+}
