@@ -1,0 +1,5 @@
+User-agent: *
+
+Allow: /
+
+Sitemap: https://redesign.gvnx.xyz/res/site/sitemap.xml

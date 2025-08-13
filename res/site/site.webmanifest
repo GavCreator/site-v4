@@ -1,0 +1,21 @@
+{
+  "name": "GvNx.xyz",
+  "short_name": "GvNx",
+  "icons": [
+    {
+      "src": "res/site/favicon-180x180.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "maskable"
+    },
+    {
+      "src": "res/site/favicon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "maskable"
+    }
+  ],
+  "theme_color": "#990808",
+  "background_color": "#990808",
+  "display": "standalone"
+}
