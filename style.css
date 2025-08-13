@@ -11,6 +11,8 @@ body {
     -o-user-drag: none;
 }
 
+/* Intro */
+
 .intro {
     display: flex;
     align-items: center;
@@ -54,6 +56,83 @@ body {
     width: 256px;
     height: auto;
 }
+
+/* Socials */
+
+.socials {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2x2 layout */
+  gap: 20px;
+  max-width: 800px;
+  margin: auto;
+}
+
+.socials > div {
+  display: flex;
+  align-items: center; /* Vertically align text with image */
+  justify-content: space-between;
+  padding: 15px;
+  backdrop-filter: blur(8px); /* Optional: blur background */
+  border-radius: 10px;
+      background-color: rgba(110, 0, 0, 0);
+    backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+    border-radius: 16px;
+    border: 1px solid rgb(190, 15, 15);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.socials > div:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.socials .text,
+.socials .desc {
+  margin: 0;
+}
+
+.socials > div .text {
+  font-size: 1.2rem;
+  font-weight: 700;
+  color: rgb(190, 15, 15);
+  font-family: "Outfit", sans-serif;
+  text-shadow: 2px 2px 10px rgb(145, 10, 10);
+}
+
+.socials > div .desc {
+  font-size: 0.9rem;
+      font-family: "Bitter", serif;
+    font-weight: 400;
+    color: rgb(218, 218, 218)
+}
+
+.socials > div .logo img {
+  max-width: 80px;
+  border-radius: 5px;
+}
+
+.socials > div .text,
+.socials > div .desc {
+  display: block;
+}
+
+.socials > div .text,
+.socials > div .desc {
+  text-align: left;
+}
+
+.socials > div .text,
+.socials > div .desc {
+  flex: 1;
+}
+
+.socials > div .text,
+.socials > div .desc {
+  margin-right: 15px;
+}
+
+/* Particles */
 
 #tsparticles {
     z-index: -1111;
