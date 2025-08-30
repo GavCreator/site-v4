@@ -1,0 +1,22 @@
+
+<svg class="xx2" width="50" height="50" viewBox="0 0 100 100" style="margin:20px; cursor:pointer;">
+  <polygon points="50,0 61,35 98,35 68,57 79,91 50,70 21,91 32,57 2,35 39,35"
+           fill="gold"
+           id="star"/>
+</svg>
+
+<style>
+    .xx2 polygon {
+        opacity: 0;          /* start invisible */
+        transition: opacity 0.3s;
+    }
+    .xx2:hover polygon {
+        opacity: 1;          /* show on hover */
+    }
+</style>
+
+<script>
+document.getElementById('star').addEventListener('click', () => {
+    window.open('https://goo.gl', '_blank');
+});
+</script>
