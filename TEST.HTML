@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Discord Status</title>
+<style>
+    body { font-family: Arial; display: flex; justify-content: center; padding: 50px; background: #f5f5f5; }
+    .status-table { background: #fff; padding: 20px; border-radius: 10px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); width: 300px; }
+    .row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #ddd; }
+    .row:last-child { border-bottom: none; }
+    .label { font-weight: bold; }
+</style>
+</head>
+<body>
+<div class="status-table" id="statusTable">
+    <div class="row"><span class="label">Is Online PC?</span> <span id="desktopStatus">Loading...</span></div>
+    <div class="row"><span class="label">Is Online Mobile?</span> <span id="mobileStatus">Loading...</span></div>
+    <div class="row"><span class="label">Discord Status</span> <span id="discordStatus">Loading...</span></div>
+    <div class="row"><span class="label">Discord Status</span> <span id="discordStatus">Loading...</span></div>
+</div>
+
+<script>
+fetch('https://api.lanyard.rest/v1/users/123')
+  .then(response => response.json())
+  .then(data => {
+      const statusData = data.data; // <-- access the nested "data" object
+      const desktop = statusData.active_on_discord_desktop ? 'Yes' : 'No';
+      const mobile = statusData.active_on_discord_mobile ? 'Yes' : 'No';
+      const status = statusData.discord_status || 'Unknown';
+
+      document.getElementById('desktopStatus').textContent = desktop;
+      document.getElementById('mobileStatus').textContent = mobile;
+      document.getElementById('discordStatus').textContent = status;
+  })
+  .catch(error => {
+      console.error(error);
+      document.getElementById('statusTable').innerHTML = "<p>Error loading status.</p>";
+  });
+</script>
+</body>
+</html>
