@@ -191,17 +191,97 @@ nav i:hover {
 }
 
 /* Responsive for mobile screens */
-@media (max-width: 600px) {
+/* Mobile Version */
+@media (max-width: 768px) {
+
+    /* Intro Section */
     .intro {
         flex-direction: column;
         width: 90%;
+        padding: 5%;
+        margin: 2% auto;
     }
 
-    .socials {
-        grid-template-columns: 1fr; /* Stack socials vertically */
+    .intro .header p {
+        font-size: 2.5rem; /* smaller for mobile */
+        text-align: center;
+    }
+
+    .intro .desc p {
+        font-size: 1rem;
+        text-align: center;
     }
 
     .intro .icon img {
-        width: 200px;
+        width: 150px;
+        margin: 1rem auto;
+    }
+
+    /* Socials */
+    .socials {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        max-width: 95%;
+    }
+
+    .social-link {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 10px;
+    }
+
+    .social-link .text {
+        font-size: 1rem;
+    }
+
+    .social-link .desc {
+        font-size: 0.8rem;
+    }
+
+    .social-link .logo img {
+        max-width: 60px;
+        margin-top: 10px;
+    }
+
+    /* GitHub section */
+    .github {
+        flex-direction: column;
+        width: 90%;
+        padding: 5%;
+        margin: 2% auto;
+    }
+
+    .github .header p {
+        font-size: 2.5rem;
+        text-align: center;
+    }
+
+    .github .desc p {
+        font-size: 1rem;
+        text-align: center;
+    }
+
+    .github .icon img {
+        width: 150px;
+        margin: 1rem auto;
+    }
+
+    /* Dev section */
+    .dev {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        max-width: 95%;
+        margin: 2% auto;
+    }
+
+    /* Navigation */
+    nav {
+        padding: 10px 15px;
+        font-size: 0.9rem;
+    }
+
+    nav i {
+        font-size: 1.2rem;
     }
 }
