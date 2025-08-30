@@ -520,4 +520,6 @@ const configs = {
 
 };
 
-loadParticles(configs);
+if (localStorage.getItem("DisableAnimatedBackground") !== "true") { 
+    loadParticles(configs);    
+}

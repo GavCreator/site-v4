@@ -45,22 +45,58 @@
     <!-- Theme Colors -->
     <meta name="msapplication-TileColor" content="#be0f0f">
     <meta name="theme-color" content="#be0f0f">
+
+    <!-- Styling -->
+    <style>
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+        }
+    </style>
 </head>
 
 <body>
 
-    <nav>
-        <a href="index.html" style="color:white; text-decoration:none; margin-right: 15px;"><i
-                class="fa-solid fa-house"></i></a>
-        <a href="privacy-policy.html" target="_blank" style="color:white; text-decoration:none; margin-right: 15px;"><i
-                class="fa-solid fa-fingerprint"></i></a>
-        <a href="settings.html" style="color:white; text-decoration:none;"><i class="fa-solid fa-gear"></i></a>
-    </nav>
+  <nav>
+    <a href="index.html" style="color:white; text-decoration:none; margin-right: 15px;"><i
+        class="fa-solid fa-house"></i></a>
+    <a href="privacy-policy.html" target="_blank" style="color:white; text-decoration:none; margin-right: 15px;"><i
+        class="fa-solid fa-fingerprint"></i></a>
+    <a href="terms-of-services.html" target="_blank" style="color:white; text-decoration:none; margin-right: 15px;"><i
+        class="fa-solid fa-file-contract"></i></a>
+    <a href="settings.html"style="color:white; text-decoration:none;"><i 
+        class="fa-solid fa-gear"></i></a>
+  </nav>
 
-    <div class="form">
-        <form>
-            
-        </form>
+    <div class="formx">
+
+        <div class="header">
+            <p>Settings</p>
+        </div>
+
+        <div class="option">
+            <div class="label">
+                <p>Disable Animated Background</p>
+            </div>
+            <div class="checkmark">
+                <div class="switch-wrapper">
+                    <input class="tgl tgl-ios" id="switch_dab" type="checkbox"/>
+                    <label class="tgl-btn" for="switch_dab">
+                </div>
+            </div>
+        </div>
+
+        <div class="option">
+            <div class="label">
+                <p>Disable Umami Script</p>
+            </div>
+            <div class="checkmark">
+                <div class="switch-wrapper">
+                    <input class="tgl tgl-ios" id="switch_dus" type="checkbox"/>
+                    <label class="tgl-btn" for="switch_dus">
+                </div>
+            </div>
+        </div>
+
     </div>
 
 
@@ -68,13 +104,12 @@
 
     <!-- Scripts For Site -->
     <script src="script.js"></script>
+    <!-- Scripts For Page -->
+    <script src="settings.js"></script>
     <!-- Font Awesome Icons -->
     <script src="https://kit.fontawesome.com/5f8433758a.js"></script>
     <!-- Particles -->
-    <script type="module" src="res/scripts/p2.js"></script>
-    <!-- Privacy Based Analytics Tool -->
-    <script defer src="https://cloud.umami.is/script.js"
-        data-website-id="faa71c6d-0bc6-4fe4-965e-e5a66b0af8d9"></script>
+    <script type="module" src="res/scripts/particles.js"></script>
     <!-- Bootstrap -->
     <script src="res/bootstrap/bootstrap.bundle.min.js"></script>
 </body>

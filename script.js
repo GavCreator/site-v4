@@ -15,20 +15,49 @@ document.addEventListener("DOMContentLoaded", function(){
     const Patreon = document.getElementById('patreon');
     const Discord = document.getElementById('discord');
 
+    if (YouTube){
     YouTube.addEventListener('click', function(){
         window.open("https://youtube.com/@GvNx");
     })
-
+    }
+    
+    if (Twitch){
     Twitch.addEventListener('click', function(){
         window.open("https://twitch.tv/SimplyGav");
     })
+    }
 
+    if (Patreon){
     Patreon.addEventListener('click', function(){
         window.open("https://patreon.com/GvNx");
     })
+    }
 
+    if (Discord){
     Discord.addEventListener('click', function(){
         window.open("https://dsc.gg/simplygav");
     })
+    }
 
+    // Check for Local Storage Variables
+    function initLS(key, defaultValue) {
+        if (localStorage.getItem(key) === null) {
+            localStorage.setItem(key, defaultValue);
+        }
+    }
+
+    // Initialize defaults
+    initLS("DisableAnimatedBackground", "false");
+    initLS("DisableUmamiScript", "false");
+
+    // Load Umami
+    if (localStorage.getItem("DisableUmamiScript") !== "true") {
+        const umamiScript = document.createElement("script");
+        umamiScript.src = "https://cloud.umami.is/script.js";
+        umamiScript.defer = true;
+        umamiScript.setAttribute("data-website-id", "faa71c6d-0bc6-4fe4-965e-e5a66b0af8d9");
+        document.head.appendChild(umamiScript);
+    } else {
+        console.log("Umami script disabled by user");
+    }
 })
