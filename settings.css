@@ -145,3 +145,50 @@ body {
 .switch-wrapper .tgl-ios:checked + .tgl-btn:active:after {
    margin-left: -12.8px;
 }
+
+/* Mobile Version */
+@media (max-width: 768px) {
+    body {
+        height: auto;
+        padding: 10px;
+        background: #080808;
+    }
+
+    .formx {
+        width: 90%;           /* smaller width for mobile */
+        padding: 15px;
+        border-radius: 12px;
+    }
+
+    .formx .header {
+        font-size: 2.5rem;    /* smaller header text */
+    }
+
+    .option {
+        flex-direction: column;   /* stack label and switch vertically */
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .option .label {
+        font-size: 1rem;
+        word-wrap: break-word;
+    }
+
+    .switch-wrapper .tgl + .tgl-btn {
+        width: 50px;           /* smaller switch width */
+        height: 28px;          /* smaller switch height */
+    }
+
+    .switch-wrapper .tgl-ios + .tgl-btn:after {
+        box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.1), 0 3px 0 rgba(0, 0, 0, 0.08);
+    }
+
+    .switch-wrapper .tgl-ios + .tgl-btn:active:after {
+        padding-right: 10px;
+    }
+
+    .switch-wrapper .tgl-ios:checked + .tgl-btn:active:after {
+        margin-left: -10px;
+    }
+}
