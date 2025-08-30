@@ -60,4 +60,18 @@ document.addEventListener("DOMContentLoaded", function(){
     } else {
         console.log("Umami script disabled by user");
     }
+
+    // Warn Mobile Users
+    // Detect mobile users
+    const isMobile = /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent);
+
+    if (isMobile) {
+        // Check localStorage
+        const seenAlert = localStorage.getItem("SeenMobileAlert");
+
+        if (seenAlert !== "true") {
+            alert("Warning: This site was designed for desktop users. A mobile version generated with AI is available, but some features may not work correctly.");  // show alert
+            localStorage.setItem("SeenMobileAlert", "true"); // mark as seen
+        }
+    }
 })
