@@ -170,4 +170,51 @@ document.addEventListener("DOMContentLoaded", function(){
             }, 6000);
         });
     }
+
+    //img
+    const quote = document.getElementById("loadimg");
+    const rngrng = Math.floor(Math.random() * 100000);
+
+    if (quote){
+        quote.setAttribute('src', `https://raw.githubusercontent.com/Newfies/Newfies/refs/heads/main/res/quote.png?${rngrng}`)
+    }
+
+const pattern = [
+  "ArrowUp", "ArrowUp",
+  "ArrowDown", "ArrowDown",
+  "ArrowLeft", "ArrowRight",
+  "ArrowLeft", "ArrowRight",
+  "b", "a", "Enter",
+];
+
+let current = 0;
+const wrapper = document.getElementById("pp-wrapper");
+const video = document.getElementById("pp");
+
+document.addEventListener("keydown", (e) => {
+  if (e.key === pattern[current]) {
+    current++;
+    if (current === pattern.length) {
+      // Show & animate in
+      wrapper.classList.add("animate__rollIn");
+      video.play();
+
+      video.addEventListener("ended", () => {
+        video.pause();
+        wrapper.classList.remove("animate__rollIn");
+        wrapper.classList.add("animate__rollOut");
+
+        setTimeout(() => {
+          wrapper.classList.remove("animate__rollOut");
+          wrapper.style.visibility = "hidden"; // hide again
+        }, 500);
+      }, { once: true });
+
+      current = 0;
+    }
+  } else {
+    current = 0;
+  }
+});
+
 })

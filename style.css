@@ -189,6 +189,7 @@ nav i:hover {
     gap: 20px;
     max-width: 800px;
     margin: auto;
+    margin-bottom: 1%;
 }
 
 /* IFrame */
@@ -271,6 +272,60 @@ nav i:hover {
 a {
     cursor: url('res/site/red_pointer.cur'), pointer;
 }
+
+#loadimg {
+    display: block;
+    width: 15%;
+    height: 15%;
+    margin: 1% auto; /* top/bottom 1%, left/right auto */
+    
+}
+
+.code {
+    display: block;
+    margin: 1% auto; /* top/bottom 1%, left/right auto */
+    text-align: center;
+}
+
+.badges {
+    display: flex;
+    justify-content: center;  /* horizontal center */
+    align-items: center;      /* vertical center */
+    gap: 20px;                /* spacing between badges */
+}
+
+.badges img {
+    width: 88px;
+    height: 31px;
+    object-fit: contain;      /* ensures image scales properly */
+}
+
+/* sec */
+/* Wrapper is always centered */
+#pp-wrapper {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  visibility: hidden;
+  z-index: 9999; /* ensure on top */
+}
+
+/* Animate.css visibility control */
+#pp-wrapper.animate__rollIn,
+#pp-wrapper.animate__rollOut {
+  visibility: visible;
+}
+
+#pp {
+  display: block;
+  max-width: 80vw;
+  max-height: 80vh;
+  border-radius: 10px;
+}
+
+
+
 
 /* Responsive for mobile screens */
 @media (max-width: 768px) {

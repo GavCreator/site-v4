@@ -20,3 +20,53 @@ document.getElementById('star').addEventListener('click', () => {
     window.open('https://goo.gl', '_blank');
 });
 </script>
+
+
+
+
+    document.addEventListener("keydown", (e) => {
+      const key = e.key;
+
+      if (key === pattern[current]) {
+        current++;
+        if (current === pattern.length) {
+          alert("Triggered!");
+          current = 0; // reset
+        }
+      } else {
+        current = 0; // reset if wrong
+      }
+    });
+
+
+
+
+        const pattern = [
+      "ArrowUp",
+      "ArrowUp",
+      "ArrowDown",
+      "ArrowDown",
+      "ArrowLeft",
+      "ArrowRight",
+      "ArrowLeft",
+      "ArrowRight",
+      "b",
+      "a",
+      "Enter",
+    ];
+
+    let current = 0;
+
+    document.addEventListener("keydown", (e) => {
+      const key = e.key;
+
+      if (key === pattern[current]) {
+        current++;
+        if (current === pattern.length) {
+          alert("Triggered!");
+          current = 0; // reset
+        }
+      } else {
+        current = 0; // reset if wrong
+      }
+    });
