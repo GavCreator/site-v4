@@ -74,4 +74,25 @@ document.addEventListener("DOMContentLoaded", function(){
             localStorage.setItem("SeenMobileAlert", "true"); // mark as seen
         }
     }
+
+    // Hinger
+    const el = document.getElementById("hingeanim");
+    
+    if (el) {
+        el.addEventListener("mouseenter", () => {
+            // Add hinge animation
+            el.classList.add("animate__animated", "animate__hinge");
+
+            // After 2s -> hide it
+            setTimeout(() => {
+            el.style.visibility = "hidden";
+            }, 2000);
+
+            // After 4 more seconds -> show and remove class
+            setTimeout(() => {
+            el.style.visibility = "visible"; // show again
+            el.classList.remove("animate__animated", "animate__hinge");
+            }, 6000);
+        });
+    }
 })
