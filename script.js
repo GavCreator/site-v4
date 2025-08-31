@@ -95,4 +95,79 @@ document.addEventListener("DOMContentLoaded", function(){
             }, 6000);
         });
     }
+
+    // Secret 2
+    const spinImg = document.getElementById("spinImg");
+
+    if (spinImg){
+        function getCurrentRotationDeg(el) {
+        const t = getComputedStyle(el).transform;
+        if (!t || t === "none") return 0;
+
+        // Handles 'matrix(a,b,c,d,e,f)'; for matrix3d you'd parse indices 0 & 1 similarly.
+        const m = t.match(/matrix\(([^)]+)\)/);
+        if (!m) return 0;
+        const vals = m[1].split(",").map(v => parseFloat(v.trim()));
+        const a = vals[0], b = vals[1];
+        let deg = Math.atan2(b, a) * (180 / Math.PI);
+
+        // Normalize to [-180, 180] so the reset takes the shortest path
+        if (deg > 180) deg -= 360;
+        if (deg < -180) deg += 360;
+        return deg;
+        }
+
+        spinImg.addEventListener("mouseenter", () => {
+        // Cancel any in-progress reset transition and start spinning
+        spinImg.style.transition = "none";
+        spinImg.style.transform = "rotate(0deg)";
+        spinImg.getBoundingClientRect(); // force reflow
+        spinImg.classList.add("spin");
+        });
+
+        spinImg.addEventListener("mouseleave", () => {
+        // Read the *animated* current angle first
+        const angle = getCurrentRotationDeg(spinImg);
+
+        // Stop the animation
+        spinImg.classList.remove("spin");
+
+        // Freeze at the current angle
+        spinImg.style.transition = "none";
+        spinImg.style.transform = `rotate(${angle}deg)`;
+        spinImg.getBoundingClientRect(); // force reflow so the next change transitions
+
+        // Now smoothly reset to 0deg
+        spinImg.style.transition = "transform 0.6s ease";
+        spinImg.style.transform = "rotate(0deg)";
+
+        // Cleanup transition after it ends
+        const cleanup = () => {
+            spinImg.style.transition = "";
+            spinImg.removeEventListener("transitionend", cleanup);
+        };
+            spinImg.addEventListener("transitionend", cleanup);
+        });
+    }
+
+    // Unhinger
+    const unel = document.getElementById("unhingeanim");
+    
+    if (unel) {
+        unel.addEventListener("mouseenter", () => {
+            // Add hinge animation
+            unel.classList.add("animate__animated", "anim__unhinge");
+
+            // After 2s -> hide it
+            setTimeout(() => {
+            unel.style.visibility = "hidden";
+            }, 2000);
+
+            // After 4 more seconds -> show and remove class
+            setTimeout(() => {
+            unel.style.visibility = "visible"; // show again
+            unel.classList.remove("animate__animated", "anim__unhinge");
+            }, 6000);
+        });
+    }
 })

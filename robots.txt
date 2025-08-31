@@ -2,4 +2,4 @@ User-agent: *
 
 Allow: /
 
-Sitemap: https://redesign.gvnx.xyz/res/site/sitemap.xml
+Sitemap: https://gvnx.xyz/res/site/sitemap.xml
