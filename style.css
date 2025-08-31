@@ -190,6 +190,15 @@ nav i:hover {
     margin: auto;
 }
 
+/* IFrame */
+.iframe-container {
+    display: flex;
+    justify-content: center; /* horizontal center */
+    align-items: center;     /* vertical center */
+    height: calc(100% - 50px); /* subtract nav height if needed */
+    margin-top: 5%;
+}
+
 /* Responsive for mobile screens */
 @media (max-width: 768px) {
 
