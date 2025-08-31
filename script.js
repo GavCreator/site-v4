@@ -1,5 +1,20 @@
 document.addEventListener("DOMContentLoaded", function(){
 
+    /* -------------------------------------------------------------------------- */
+    /*                              Special Functions                             */
+    /* -------------------------------------------------------------------------- */
+
+    // Check for Local Storage Variables
+    function initLS(key, defaultValue) {
+        if (localStorage.getItem(key) === null) {
+            localStorage.setItem(key, defaultValue);
+        }
+    }
+
+    /* -------------------------------------------------------------------------- */
+    /*                           Prevention Measurements                          */
+    /* -------------------------------------------------------------------------- */
+
     // Stop Image Dragging
     document.querySelectorAll('img').forEach(img => {
         img.addEventListener('dragstart', event => event.preventDefault());
@@ -10,47 +25,15 @@ document.addEventListener("DOMContentLoaded", function(){
         event.preventDefault();
     })
 
-    const YouTube = document.getElementById('youtube');
-    const Twitch = document.getElementById('twitch');
-    const Patreon = document.getElementById('patreon');
-    const Discord = document.getElementById('discord');
+    /* -------------------------------------------------------------------------- */
+    /*                              Settings Scripts                              */
+    /* -------------------------------------------------------------------------- */
 
-    if (YouTube){
-    YouTube.addEventListener('click', function(){
-        window.open("https://youtube.com/@GvNx");
-    })
-    }
-    
-    if (Twitch){
-    Twitch.addEventListener('click', function(){
-        window.open("https://twitch.tv/SimplyGav");
-    })
-    }
-
-    if (Patreon){
-    Patreon.addEventListener('click', function(){
-        window.open("https://patreon.com/GvNx");
-    })
-    }
-
-    if (Discord){
-    Discord.addEventListener('click', function(){
-        window.open("https://dsc.gg/simplygav");
-    })
-    }
-
-    // Check for Local Storage Variables
-    function initLS(key, defaultValue) {
-        if (localStorage.getItem(key) === null) {
-            localStorage.setItem(key, defaultValue);
-        }
-    }
-
-    // Initialize defaults
+    // If Settings Dont Exist, Set Them To False
     initLS("DisableAnimatedBackground", "false");
     initLS("DisableUmamiScript", "false");
 
-    // Load Umami
+    // Load Conditioner For Umami
     if (localStorage.getItem("DisableUmamiScript") !== "true") {
         const umamiScript = document.createElement("script");
         umamiScript.src = "https://cloud.umami.is/script.js";
@@ -61,27 +44,18 @@ document.addEventListener("DOMContentLoaded", function(){
         console.log("Umami script disabled by user");
     }
 
-    // Warn Mobile Users
-    // Detect mobile users
-    const isMobile = /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent);
+    /* -------------------------------------------------------------------------- */
+    /*                            Special Event Scripts                           */
+    /* -------------------------------------------------------------------------- */
 
-    if (isMobile) {
-        // Check localStorage
-        const seenAlert = localStorage.getItem("SeenMobileAlert");
-
-        if (seenAlert !== "true") {
-            alert("Warning: This site was designed for desktop users. A mobile version generated with AI is available, but some features may not work correctly.");  // show alert
-            localStorage.setItem("SeenMobileAlert", "true"); // mark as seen
-        }
-    }
-
-    // Hinger
+    // "Hey, Its Gav!" Script
     const el = document.getElementById("hingeanim");
     
     if (el) {
         el.addEventListener("mouseenter", () => {
             // Add hinge animation
             el.classList.add("animate__animated", "animate__hinge");
+            localStorage.setItem("secret4", "true");
 
             // After 2s -> hide it
             setTimeout(() => {
@@ -96,7 +70,29 @@ document.addEventListener("DOMContentLoaded", function(){
         });
     }
 
-    // Secret 2
+    // "Program & Developer" Script
+    const unel = document.getElementById("unhingeanim");
+    
+    if (unel) {
+        unel.addEventListener("mouseenter", () => {
+            // Add hinge animation
+            unel.classList.add("animate__animated", "anim__unhinge");
+            localStorage.setItem("secret2", "true");
+
+            // After 2s -> hide it
+            setTimeout(() => {
+            unel.style.visibility = "hidden";
+            }, 2000);
+
+            // After 4 more seconds -> show and remove class
+            setTimeout(() => {
+            unel.style.visibility = "visible"; // show again
+            unel.classList.remove("animate__animated", "anim__unhinge");
+            }, 6000);
+        });
+    }
+
+    // Newfies Icon Script
     const spinImg = document.getElementById("spinImg");
 
     if (spinImg){
@@ -145,76 +141,76 @@ document.addEventListener("DOMContentLoaded", function(){
         const cleanup = () => {
             spinImg.style.transition = "";
             spinImg.removeEventListener("transitionend", cleanup);
+            localStorage.setItem("secret1", "true");
         };
             spinImg.addEventListener("transitionend", cleanup);
         });
     }
 
-    // Unhinger
-    const unel = document.getElementById("unhingeanim");
-    
-    if (unel) {
-        unel.addEventListener("mouseenter", () => {
-            // Add hinge animation
-            unel.classList.add("animate__animated", "anim__unhinge");
+    // Cheat Code Script
+    const pattern = [
+        "ArrowUp", "ArrowUp",
+        "ArrowDown", "ArrowDown",
+        "ArrowLeft", "ArrowRight",
+        "ArrowLeft", "ArrowRight",
+        "b", "a", "Enter",
+    ];
 
-            // After 2s -> hide it
-            setTimeout(() => {
-            unel.style.visibility = "hidden";
-            }, 2000);
+    let current = 0;
+    const wrapper = document.getElementById("pp-wrapper");
+    const video = document.getElementById("pp");
 
-            // After 4 more seconds -> show and remove class
-            setTimeout(() => {
-            unel.style.visibility = "visible"; // show again
-            unel.classList.remove("animate__animated", "anim__unhinge");
-            }, 6000);
-        });
+    document.addEventListener("keydown", (e) => {
+        if (e.key === pattern[current]) {
+            current++;
+            if (current === pattern.length) {
+            wrapper.classList.add("animate__rollIn");
+            video.play();
+                localStorage.setItem("secret3", "true");
+
+            video.addEventListener("ended", () => {
+                video.pause();
+                wrapper.classList.remove("animate__rollIn");
+                wrapper.classList.add("animate__rollOut");
+
+                setTimeout(() => {
+                wrapper.classList.remove("animate__rollOut");
+                wrapper.style.visibility = "hidden";
+                }, 500);
+            }, { once: true });
+
+            current = 0;
+            }
+        } else {
+            current = 0;
+        }
+    });
+
+    /* -------------------------------------------------------------------------- */
+    /*                               Detection Based                              */
+    /* -------------------------------------------------------------------------- */
+
+    // Mobile Alert Detection Script
+    const isMobile = /Android|iPhone|iPad|iPod|Opera Mini|IEMobile|WPDesktop/i.test(navigator.userAgent);
+
+    if (isMobile) {
+        const seenAlert = localStorage.getItem("SeenMobileAlert");
+
+        if (seenAlert !== "true") {
+            alert("Warning: This site was designed for desktop users. A mobile version generated with AI is available, but some features may not work correctly.");  // show alert
+            localStorage.setItem("SeenMobileAlert", "true"); // mark as seen
+        }
     }
 
-    //img
+    /* -------------------------------------------------------------------------- */
+    /*                                   Loader                                   */
+    /* -------------------------------------------------------------------------- */
+
+    // Quote Generator and Loader
     const quote = document.getElementById("loadimg");
-    const rngrng = Math.floor(Math.random() * 100000);
+    const quoterng = Math.floor(Math.random() * 100000);
 
     if (quote){
-        quote.setAttribute('src', `https://raw.githubusercontent.com/Newfies/Newfies/refs/heads/main/res/quote.png?${rngrng}`)
+        quote.setAttribute('src', `https://raw.githubusercontent.com/Newfies/Newfies/refs/heads/main/res/quote.png?${quoterng}`)
     }
-
-const pattern = [
-  "ArrowUp", "ArrowUp",
-  "ArrowDown", "ArrowDown",
-  "ArrowLeft", "ArrowRight",
-  "ArrowLeft", "ArrowRight",
-  "b", "a", "Enter",
-];
-
-let current = 0;
-const wrapper = document.getElementById("pp-wrapper");
-const video = document.getElementById("pp");
-
-document.addEventListener("keydown", (e) => {
-  if (e.key === pattern[current]) {
-    current++;
-    if (current === pattern.length) {
-      wrapper.classList.add("animate__rollIn");
-      video.play();
-
-      video.addEventListener("ended", () => {
-        video.pause();
-        wrapper.classList.remove("animate__rollIn");
-        wrapper.classList.add("animate__rollOut");
-
-        setTimeout(() => {
-          wrapper.classList.remove("animate__rollOut");
-          wrapper.style.visibility = "hidden";
-        }, 500);
-      }, { once: true });
-
-      current = 0;
-    }
-  } else {
-    current = 0;
-  }
-});
-
-
 })

@@ -288,11 +288,13 @@ a {
 }
 
 .badges {
-    display: flex;
-    justify-content: center;  /* horizontal center */
-    align-items: center;      /* vertical center */
-    gap: 20px;                /* spacing between badges */
+    display: grid;
+    grid-template-columns: repeat(10, auto); /* 5 items per row, natural width */
+    gap: 15px;               /* exact spacing between badges */
+    justify-content: center; /* center the whole row */
+    align-items: center;   
 }
+
 
 .badges img {
     width: 88px;
