@@ -195,7 +195,6 @@ document.addEventListener("keydown", (e) => {
   if (e.key === pattern[current]) {
     current++;
     if (current === pattern.length) {
-      // Show & animate in
       wrapper.classList.add("animate__rollIn");
       video.play();
 
@@ -206,7 +205,7 @@ document.addEventListener("keydown", (e) => {
 
         setTimeout(() => {
           wrapper.classList.remove("animate__rollOut");
-          wrapper.style.visibility = "hidden"; // hide again
+          wrapper.style.visibility = "hidden";
         }, 500);
       }, { once: true });
 
@@ -216,5 +215,6 @@ document.addEventListener("keydown", (e) => {
     current = 0;
   }
 });
+
 
 })
