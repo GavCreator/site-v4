@@ -14,6 +14,8 @@ document.addEventListener("DOMContentLoaded", function() {
     /* Variables */
     const DAB = getId('switch_dab');
     const DUS = getId('switch_dus');
+    const DS = getId('switch_ds');
+    const CLS = getId('clearls');
 
     /* Restore state from localStorage */
     if (getLS("DisableAnimatedBackground") === "true") {
@@ -21,6 +23,9 @@ document.addEventListener("DOMContentLoaded", function() {
     }
     if (getLS("DisableUmamiScript") === "true") {
         DUS.checked = true;
+    }
+    if (getLS("DisableSecrets") === "true") {
+        DS.checked = true;
     }
 
     /* Event listeners */
@@ -39,6 +44,19 @@ document.addEventListener("DOMContentLoaded", function() {
             setLS("DisableUmamiScript", "false");
         }
     });
+
+    DS.addEventListener("change", function() {
+        if (DS.checked) {
+            setLS("DisableSecrets", "true");
+        } else {
+            setLS("DisableSecrets", "false");
+        }
+    }); 
+
+    CLS.addEventListener('click', function(){
+        localStorage.clear();
+        window.location.reload();
+    })
 
     // Sync checkbox state with localStorage
     if (DAB && localStorage.getItem("DisableAnimatedBackground") === "true") {

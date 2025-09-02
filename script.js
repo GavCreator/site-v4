@@ -32,6 +32,7 @@ document.addEventListener("DOMContentLoaded", function(){
     // If Settings Dont Exist, Set Them To False
     initLS("DisableAnimatedBackground", "false");
     initLS("DisableUmamiScript", "false");
+    initLS("DisableSecrets", "false");
 
     // Load Conditioner For Umami
     if (localStorage.getItem("DisableUmamiScript") !== "true") {
@@ -47,210 +48,219 @@ document.addEventListener("DOMContentLoaded", function(){
     /* -------------------------------------------------------------------------- */
     /*                            Special Event Scripts                           */
     /* -------------------------------------------------------------------------- */
+    if (localStorage.getItem("DisableSecrets") !== "true"){
+        // "Hey, Its Gav!" Script
+        const el = document.getElementById("hingeanim");
+        
+        if (el) {
+            el.addEventListener("mouseenter", () => {
+                // Add hinge animation
+                el.classList.add("animate__animated", "animate__hinge");
+                localStorage.setItem("secret4", "true");
 
-    // "Hey, Its Gav!" Script
-    const el = document.getElementById("hingeanim");
-    
-    if (el) {
-        el.addEventListener("mouseenter", () => {
-            // Add hinge animation
-            el.classList.add("animate__animated", "animate__hinge");
-            localStorage.setItem("secret4", "true");
+                // After 2s -> hide it
+                setTimeout(() => {
+                el.style.visibility = "hidden";
+                }, 2000);
 
-            // After 2s -> hide it
-            setTimeout(() => {
-            el.style.visibility = "hidden";
-            }, 2000);
-
-            // After 4 more seconds -> show and remove class
-            setTimeout(() => {
-            el.style.visibility = "visible"; // show again
-            el.classList.remove("animate__animated", "animate__hinge");
-            }, 6000);
-        });
-    }
-
-    // "Program & Developer" Script
-    const unel = document.getElementById("unhingeanim");
-    
-    if (unel) {
-        unel.addEventListener("mouseenter", () => {
-            // Add hinge animation
-            unel.classList.add("animate__animated", "anim__unhinge");
-            localStorage.setItem("secret2", "true");
-
-            // After 2s -> hide it
-            setTimeout(() => {
-            unel.style.visibility = "hidden";
-            }, 2000);
-
-            // After 4 more seconds -> show and remove class
-            setTimeout(() => {
-            unel.style.visibility = "visible"; // show again
-            unel.classList.remove("animate__animated", "anim__unhinge");
-            }, 6000);
-        });
-    }
-
-    // Newfies Icon Script
-    const spinImg = document.getElementById("spinImg");
-
-    if (spinImg){
-        function getCurrentRotationDeg(el) {
-        const t = getComputedStyle(el).transform;
-        if (!t || t === "none") return 0;
-
-        // Handles 'matrix(a,b,c,d,e,f)'; for matrix3d you'd parse indices 0 & 1 similarly.
-        const m = t.match(/matrix\(([^)]+)\)/);
-        if (!m) return 0;
-        const vals = m[1].split(",").map(v => parseFloat(v.trim()));
-        const a = vals[0], b = vals[1];
-        let deg = Math.atan2(b, a) * (180 / Math.PI);
-
-        // Normalize to [-180, 180] so the reset takes the shortest path
-        if (deg > 180) deg -= 360;
-        if (deg < -180) deg += 360;
-        return deg;
+                // After 4 more seconds -> show and remove class
+                setTimeout(() => {
+                el.style.visibility = "visible"; // show again
+                el.classList.remove("animate__animated", "animate__hinge");
+                }, 6000);
+            });
         }
 
-        spinImg.addEventListener("mouseenter", () => {
-        // Cancel any in-progress reset transition and start spinning
-        spinImg.style.transition = "none";
-        spinImg.style.transform = "rotate(0deg)";
-        spinImg.getBoundingClientRect(); // force reflow
-        spinImg.classList.add("spin");
-        });
+        // "Program & Developer" Script
+        const unel = document.getElementById("unhingeanim");
+        
+        if (unel) {
+            unel.addEventListener("mouseenter", () => {
+                // Add hinge animation
+                unel.classList.add("animate__animated", "anim__unhinge");
+                localStorage.setItem("secret2", "true");
 
-        spinImg.addEventListener("mouseleave", () => {
-        // Read the *animated* current angle first
-        const angle = getCurrentRotationDeg(spinImg);
+                // After 2s -> hide it
+                setTimeout(() => {
+                unel.style.visibility = "hidden";
+                }, 2000);
 
-        // Stop the animation
-        spinImg.classList.remove("spin");
+                // After 4 more seconds -> show and remove class
+                setTimeout(() => {
+                unel.style.visibility = "visible"; // show again
+                unel.classList.remove("animate__animated", "anim__unhinge");
+                }, 6000);
+            });
+        }
 
-        // Freeze at the current angle
-        spinImg.style.transition = "none";
-        spinImg.style.transform = `rotate(${angle}deg)`;
-        spinImg.getBoundingClientRect(); // force reflow so the next change transitions
+        // Newfies Icon Script
+        const spinImg = document.getElementById("spinImg");
 
-        // Now smoothly reset to 0deg
-        spinImg.style.transition = "transform 0.6s ease";
-        spinImg.style.transform = "rotate(0deg)";
+        if (spinImg){
+            function getCurrentRotationDeg(el) {
+            const t = getComputedStyle(el).transform;
+            if (!t || t === "none") return 0;
 
-        // Cleanup transition after it ends
-        const cleanup = () => {
-            spinImg.style.transition = "";
-            spinImg.removeEventListener("transitionend", cleanup);
-            localStorage.setItem("secret1", "true");
-        };
-            spinImg.addEventListener("transitionend", cleanup);
-        });
-    }
+            // Handles 'matrix(a,b,c,d,e,f)'; for matrix3d you'd parse indices 0 & 1 similarly.
+            const m = t.match(/matrix\(([^)]+)\)/);
+            if (!m) return 0;
+            const vals = m[1].split(",").map(v => parseFloat(v.trim()));
+            const a = vals[0], b = vals[1];
+            let deg = Math.atan2(b, a) * (180 / Math.PI);
 
-    // Cheat Code Script
-    const pattern = [
-        "ArrowUp", "ArrowUp",
-        "ArrowDown", "ArrowDown",
-        "ArrowLeft", "ArrowRight",
-        "ArrowLeft", "ArrowRight",
-        "b", "a", "Enter",
-    ];
-    let konamicurrent = 0;
-    const wrapper = document.getElementById("pp-wrapper");
-    const video = document.getElementById("pp");
+            // Normalize to [-180, 180] so the reset takes the shortest path
+            if (deg > 180) deg -= 360;
+            if (deg < -180) deg += 360;
+            return deg;
+            }
 
-    document.addEventListener("keydown", (e) => {
-        if (e.key === pattern[konamicurrent]) {
-            konamicurrent++;
-            if (konamicurrent === pattern.length) {
-                wrapper.classList.add("animate__rollIn");
-                video.play();
-                localStorage.setItem("secret3", "true");
+            spinImg.addEventListener("mouseenter", () => {
+            // Cancel any in-progress reset transition and start spinning
+            spinImg.style.transition = "none";
+            spinImg.style.transform = "rotate(0deg)";
+            spinImg.getBoundingClientRect(); // force reflow
+            spinImg.classList.add("spin");
+            });
 
-                video.addEventListener("ended", () => {
-                    video.pause();
-                    wrapper.classList.remove("animate__rollIn");
-                    wrapper.classList.add("animate__rollOut");
+            spinImg.addEventListener("mouseleave", () => {
+            // Read the *animated* current angle first
+            const angle = getCurrentRotationDeg(spinImg);
 
-                    setTimeout(() => {
-                        wrapper.classList.remove("animate__rollOut");
-                        konamicurrent = 0; // reset konami sequence
-                    }, 500);
-                }, { once: true });
+            // Stop the animation
+            spinImg.classList.remove("spin");
 
+            // Freeze at the current angle
+            spinImg.style.transition = "none";
+            spinImg.style.transform = `rotate(${angle}deg)`;
+            spinImg.getBoundingClientRect(); // force reflow so the next change transitions
+
+            // Now smoothly reset to 0deg
+            spinImg.style.transition = "transform 0.6s ease";
+            spinImg.style.transform = "rotate(0deg)";
+
+            // Cleanup transition after it ends
+            const cleanup = () => {
+                spinImg.style.transition = "";
+                spinImg.removeEventListener("transitionend", cleanup);
+                localStorage.setItem("secret1", "true");
+            };
+                spinImg.addEventListener("transitionend", cleanup);
+            });
+        }
+
+        // Cheat Code Script
+        const pattern = [
+            "ArrowUp", "ArrowUp",
+            "ArrowDown", "ArrowDown",
+            "ArrowLeft", "ArrowRight",
+            "ArrowLeft", "ArrowRight",
+            "b", "a", "Enter",
+        ];
+        let konamicurrent = 0;
+        const wrapper = document.getElementById("pp-wrapper");
+        const video = document.getElementById("pp");
+
+        document.addEventListener("keydown", (e) => {
+            if (e.key === pattern[konamicurrent]) {
+                konamicurrent++;
+                if (konamicurrent === pattern.length) {
+                    wrapper.classList.add("animate__rollIn");
+                    video.play();
+                    localStorage.setItem("secret3", "true");
+
+                    video.addEventListener("ended", () => {
+                        video.pause();
+                        wrapper.classList.remove("animate__rollIn");
+                        wrapper.classList.add("animate__rollOut");
+
+                        setTimeout(() => {
+                            wrapper.classList.remove("animate__rollOut");
+                            konamicurrent = 0; // reset konami sequence
+                        }, 500);
+                    }, { once: true });
+
+                    konamicurrent = 0;
+                }
+            } else {
                 konamicurrent = 0;
             }
-        } else {
-            konamicurrent = 0;
-        }
-    });
+        });
 
-    // Boykisser Script
-    const wrapper2 = document.getElementById("pp2-wrapper");
-    const video2 = document.getElementById("pp2");
-    const bk = document.getElementById("bkiss");
-    
-    bk.addEventListener('click', function(){
-        wrapper2.classList.add("animate__rollIn");
-            video2.play();
-                localStorage.setItem("secret5", "true");
+        // Boykisser Script
+        const wrapper2 = document.getElementById("pp2-wrapper");
+        const video2 = document.getElementById("pp2");
+        const bk = document.getElementById("bkiss");
+        
+        bk.addEventListener('click', function(){
+            wrapper2.classList.add("animate__rollIn");
+                video2.play();
+                    localStorage.setItem("secret5", "true");
 
-            video2.addEventListener("ended", () => {
-                video2.pause();
-                wrapper2.classList.remove("animate__rollIn");
-                wrapper2.classList.add("animate__rollOut");
-
-                setTimeout(() => {
-                wrapper2.classList.remove("animate__rollOut");
-                wrapper2.style.visibility = "hidden";
-                }, 500);
-            }, { once: true });
-    })
-
-    // We Dont Know Script
-    const circlecontainer = document.getElementById("smallcirclegone");
-    const circle = document.getElementById("circle");
-    const eldesc = document.getElementById("circlechange");
-    const elicon = document.getElementById("circleicon");
-
-    circlecontainer.addEventListener("dblclick", function(){
-        el.textContent = "Secrets, Many Secrets!";
-        eldesc.innerHTML = "<p>How many secrets are there?</p>";
-        elicon.src = "res/circle.gif";
-        localStorage.setItem("secret6", "true");
-    })
-
-    // Drown Script
-    const drownpattern = ["d", "r", "o", "w", "n"];
-    let drowncurrent = 0;
-    const drownwrapper = document.getElementById("drownpp-wrapper");
-    const drownvideo = document.getElementById("drownpp");
-
-    document.addEventListener("keydown", (e) => {
-        if (e.key === drownpattern[drowncurrent]) {
-            drowncurrent++;
-            if (drowncurrent === drownpattern.length) {
-                drownwrapper.classList.add("animate__rollIn");
-                drownvideo.play();
-                localStorage.setItem("secret7", "true");
-
-                drownvideo.addEventListener("ended", () => {
-                    drownvideo.pause();
-                    drownwrapper.classList.remove("animate__rollIn");
-                    drownwrapper.classList.add("animate__rollOut");
+                video2.addEventListener("ended", () => {
+                    video2.pause();
+                    wrapper2.classList.remove("animate__rollIn");
+                    wrapper2.classList.add("animate__rollOut");
 
                     setTimeout(() => {
-                        drownwrapper.classList.remove("animate__rollOut");
-                        drowncurrent = 0; // reset drown sequence
+                    wrapper2.classList.remove("animate__rollOut");
+                    wrapper2.style.visibility = "hidden";
                     }, 500);
                 }, { once: true });
+        })
 
+        // We Dont Know Script
+        const circlecontainer = document.getElementById("smallcirclegone");
+        const circle = document.getElementById("circle");
+        const eldesc = document.getElementById("circlechange");
+        const elicon = document.getElementById("circleicon");
+
+        circlecontainer.addEventListener("dblclick", function(){
+            el.textContent = "Secrets, Many Secrets!";
+            eldesc.innerHTML = "<p>How many secrets are there?</p>";
+            elicon.src = "res/circle.gif";
+            localStorage.setItem("secret6", "true");
+        })
+
+        // Drown Script
+        const drownpattern = ["d", "r", "o", "w", "n"];
+        let drowncurrent = 0;
+        const drownwrapper = document.getElementById("drownpp-wrapper");
+        const drownvideo = document.getElementById("drownpp");
+
+        document.addEventListener("keydown", (e) => {
+            if (e.key === drownpattern[drowncurrent]) {
+                drowncurrent++;
+                if (drowncurrent === drownpattern.length) {
+                    drownwrapper.classList.add("animate__rollIn");
+                    drownvideo.play();
+                    localStorage.setItem("secret7", "true");
+
+                    drownvideo.addEventListener("ended", () => {
+                        drownvideo.pause();
+                        drownwrapper.classList.remove("animate__rollIn");
+                        drownwrapper.classList.add("animate__rollOut");
+
+                        setTimeout(() => {
+                            drownwrapper.classList.remove("animate__rollOut");
+                            drowncurrent = 0; // reset drown sequence
+                        }, 500);
+                    }, { once: true });
+
+                    drowncurrent = 0;
+                }
+            } else {
                 drowncurrent = 0;
             }
-        } else {
-            drowncurrent = 0;
-        }
-    });
+        });
+    } else {
+        const circlecontainer = document.getElementById("smallcirclegone");
+        const circle = document.getElementById("circle");
+        const kcode = document.getElementById('kcode');
+
+        circlecontainer.remove();
+        circle.remove();
+        kcode.remove();
+    }
 
     /* -------------------------------------------------------------------------- */
     /*                               Detection Based                              */
