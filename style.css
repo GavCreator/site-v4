@@ -304,7 +304,7 @@ a {
 
 /* sec */
 /* Wrapper is always centered */
-#pp-wrapper {
+#pp-wrapper, #pp2-wrapper {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -315,11 +315,20 @@ a {
 
 /* Animate.css visibility control */
 #pp-wrapper.animate__rollIn,
-#pp-wrapper.animate__rollOut {
+#pp-wrapper.animate__rollOut,
+#pp2-wrapper.animate__rollIn,
+#pp2-wrapper.animate__rollOut {
   visibility: visible;
 }
 
 #pp {
+  display: block;
+  max-width: 80vw;
+  max-height: 80vh;
+  border-radius: 10px;
+}
+
+#pp2 {
   display: block;
   max-width: 80vw;
   max-height: 80vh;

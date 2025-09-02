@@ -186,6 +186,28 @@ document.addEventListener("DOMContentLoaded", function(){
         }
     });
 
+    // Boykisser Script
+    const wrapper2 = document.getElementById("pp2-wrapper");
+    const video2 = document.getElementById("pp2");
+    const bk = document.getElementById("bkiss");
+    
+    bk.addEventListener('click', function(){
+        wrapper2.classList.add("animate__rollIn");
+            video2.play();
+                localStorage.setItem("secret5", "true");
+
+            video2.addEventListener("ended", () => {
+                video2.pause();
+                wrapper2.classList.remove("animate__rollIn");
+                wrapper2.classList.add("animate__rollOut");
+
+                setTimeout(() => {
+                wrapper2.classList.remove("animate__rollOut");
+                wrapper2.style.visibility = "hidden";
+                }, 500);
+            }, { once: true });
+    })
+
     /* -------------------------------------------------------------------------- */
     /*                               Detection Based                              */
     /* -------------------------------------------------------------------------- */
