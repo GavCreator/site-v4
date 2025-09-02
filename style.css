@@ -335,8 +335,21 @@ a {
   border-radius: 10px;
 }
 
+#smallcirclegone {
+    position: fixed;
+    top: 60%;
+    left: 92%;
+    transform: translate(-50%, -50%);
+    z-index: 9999; /* ensure on top */
+    transition: 0.5s ease-in;
+}
 
-
+#circle {
+    width: 57px;
+    height: 57px;
+    background-color: red;
+    visibility: hidden;
+}
 
 /* Responsive for mobile screens */
 @media (max-width: 768px) {

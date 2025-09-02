@@ -208,6 +208,14 @@ document.addEventListener("DOMContentLoaded", function(){
             }, { once: true });
     })
 
+    // We Dont Know Script
+    const circlecontainer = document.getElementById("smallcirclegone");
+    const circle = document.getElementById("circle");
+
+    circlecontainer.addEventListener("dblclick", function(){
+        alert('hi');
+    })
+
     /* -------------------------------------------------------------------------- */
     /*                               Detection Based                              */
     /* -------------------------------------------------------------------------- */
