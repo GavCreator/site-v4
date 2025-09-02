@@ -269,9 +269,9 @@ nav i:hover {
   background-color: #bb0000;
 }
 
-a {
+/* a {
     cursor: url('res/site/red_pointer.cur'), pointer;
-}
+} */
 
 #loadimg {
     display: block;
