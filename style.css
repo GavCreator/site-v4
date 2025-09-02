@@ -344,6 +344,10 @@ a {
     transition: 0.5s ease-in;
 }
 
+#smallcirclegone:hover {
+    cursor: help;
+}
+
 #circle {
     width: 57px;
     height: 57px;

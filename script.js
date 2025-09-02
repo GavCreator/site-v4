@@ -211,9 +211,14 @@ document.addEventListener("DOMContentLoaded", function(){
     // We Dont Know Script
     const circlecontainer = document.getElementById("smallcirclegone");
     const circle = document.getElementById("circle");
+    const eldesc = document.getElementById("circlechange");
+    const elicon = document.getElementById("circleicon");
 
     circlecontainer.addEventListener("dblclick", function(){
-        alert('hi');
+        el.textContent = "Secrets, Many Secrets!";
+        eldesc.innerHTML = "<p>How many secrets are there?</p>";
+        elicon.src = "res/circle.gif";
+        localStorage.setItem("secret6", "true");
     })
 
     /* -------------------------------------------------------------------------- */
