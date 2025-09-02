@@ -54,7 +54,32 @@ document.addEventListener("DOMContentLoaded", function() {
     }); 
 
     CLS.addEventListener('click', function(){
+        // Clear localStorage & sessionStorage
         localStorage.clear();
+        sessionStorage.clear();
+
+        // Clear all cookies
+        document.cookie.split(";").forEach(c => {
+        document.cookie = c
+            .replace(/^ +/, "")
+            .replace(/=.*/, "=;expires=" + new Date(0).toUTCString() + ";path=/");
+        });
+
+        // Clear IndexedDB
+        indexedDB.databases().then(dbs => {
+        dbs.forEach(db => indexedDB.deleteDatabase(db.name));
+        });
+
+        // Clear Cache Storage
+        caches.keys().then(names => {
+        for (let name of names) caches.delete(name);
+        });
+
+        // Unregister Service Workers
+        navigator.serviceWorker.getRegistrations().then(regs => {
+        regs.forEach(reg => reg.unregister());
+        });
+
         window.location.reload();
     })
 
