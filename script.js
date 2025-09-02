@@ -155,34 +155,33 @@ document.addEventListener("DOMContentLoaded", function(){
         "ArrowLeft", "ArrowRight",
         "b", "a", "Enter",
     ];
-
-    let current = 0;
+    let konamicurrent = 0;
     const wrapper = document.getElementById("pp-wrapper");
     const video = document.getElementById("pp");
 
     document.addEventListener("keydown", (e) => {
-        if (e.key === pattern[current]) {
-            current++;
-            if (current === pattern.length) {
-            wrapper.classList.add("animate__rollIn");
-            video.play();
+        if (e.key === pattern[konamicurrent]) {
+            konamicurrent++;
+            if (konamicurrent === pattern.length) {
+                wrapper.classList.add("animate__rollIn");
+                video.play();
                 localStorage.setItem("secret3", "true");
 
-            video.addEventListener("ended", () => {
-                video.pause();
-                wrapper.classList.remove("animate__rollIn");
-                wrapper.classList.add("animate__rollOut");
+                video.addEventListener("ended", () => {
+                    video.pause();
+                    wrapper.classList.remove("animate__rollIn");
+                    wrapper.classList.add("animate__rollOut");
 
-                setTimeout(() => {
-                wrapper.classList.remove("animate__rollOut");
-                wrapper.style.visibility = "hidden";
-                }, 500);
-            }, { once: true });
+                    setTimeout(() => {
+                        wrapper.classList.remove("animate__rollOut");
+                        konamicurrent = 0; // reset konami sequence
+                    }, 500);
+                }, { once: true });
 
-            current = 0;
+                konamicurrent = 0;
             }
         } else {
-            current = 0;
+            konamicurrent = 0;
         }
     });
 
@@ -220,6 +219,38 @@ document.addEventListener("DOMContentLoaded", function(){
         elicon.src = "res/circle.gif";
         localStorage.setItem("secret6", "true");
     })
+
+    // Drown Script
+    const drownpattern = ["d", "r", "o", "w", "n"];
+    let drowncurrent = 0;
+    const drownwrapper = document.getElementById("drownpp-wrapper");
+    const drownvideo = document.getElementById("drownpp");
+
+    document.addEventListener("keydown", (e) => {
+        if (e.key === drownpattern[drowncurrent]) {
+            drowncurrent++;
+            if (drowncurrent === drownpattern.length) {
+                drownwrapper.classList.add("animate__rollIn");
+                drownvideo.play();
+                localStorage.setItem("secret7", "true");
+
+                drownvideo.addEventListener("ended", () => {
+                    drownvideo.pause();
+                    drownwrapper.classList.remove("animate__rollIn");
+                    drownwrapper.classList.add("animate__rollOut");
+
+                    setTimeout(() => {
+                        drownwrapper.classList.remove("animate__rollOut");
+                        drowncurrent = 0; // reset drown sequence
+                    }, 500);
+                }, { once: true });
+
+                drowncurrent = 0;
+            }
+        } else {
+            drowncurrent = 0;
+        }
+    });
 
     /* -------------------------------------------------------------------------- */
     /*                               Detection Based                              */

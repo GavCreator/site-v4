@@ -304,7 +304,7 @@ a {
 
 /* sec */
 /* Wrapper is always centered */
-#pp-wrapper, #pp2-wrapper {
+#pp-wrapper, #pp2-wrapper, #drownpp-wrapper  {
   position: fixed;
   top: 50%;
   left: 50%;
@@ -317,7 +317,9 @@ a {
 #pp-wrapper.animate__rollIn,
 #pp-wrapper.animate__rollOut,
 #pp2-wrapper.animate__rollIn,
-#pp2-wrapper.animate__rollOut {
+#pp2-wrapper.animate__rollOut,
+#drownpp-wrapper.animate__rollIn,
+#drownpp-wrapper.animate__rollOut {
   visibility: visible;
 }
 
@@ -329,6 +331,13 @@ a {
 }
 
 #pp2 {
+  display: block;
+  max-width: 80vw;
+  max-height: 80vh;
+  border-radius: 10px;
+}
+
+#drownpp {
   display: block;
   max-width: 80vw;
   max-height: 80vh;
