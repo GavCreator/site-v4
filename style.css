@@ -525,6 +525,60 @@ nav i:hover {
         margin-top: 10px;
     }
 
+    /* Donations */
+    .donations {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        max-width: 95%;
+    }
+
+    .donations-link {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 10px;
+    }
+
+    .donations-link .text {
+        font-size: 1rem;
+    }
+
+    .donations-link .desc {
+        font-size: 0.8rem;
+    }
+
+    .donations-link .logo img {
+        max-width: 60px;
+        margin-top: 10px;
+    }
+
+    /* Affiliates */
+    .affiliates {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        max-width: 95%;
+    }
+
+    .affiliates-link {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 10px;
+    }
+
+    .affiliates-link .text {
+        font-size: 1rem;
+    }
+
+    .affiliates-link .desc {
+        font-size: 0.8rem;
+    }
+
+    .affiliates-link .logo img {
+        max-width: 60px;
+        margin-top: 10px;
+    }
+
     /* GitHub section */
     .github {
         flex-direction: column;
@@ -554,6 +608,24 @@ nav i:hover {
         gap: 15px;
         max-width: 95%;
         margin: 2% auto;
+    }
+
+    /* Badges */
+    .badges {
+        grid-template-columns: repeat(3, auto);
+        gap: 10px;
+    }
+
+    .badges img {
+        width: 70px;
+        height: 25px;
+    }
+
+    /* IFrame */
+    .iframe-container {
+        margin-top: 10%;
+        padding: 0 5%;
+        height: auto;
     }
 
     /* Navigation */
